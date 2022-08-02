@@ -2,6 +2,9 @@
   "folders": [
     {
       "path": "..\\Bunch-of-Python-codes"
+    },
+    {
+      "path": "."
     }
   ]
 }
