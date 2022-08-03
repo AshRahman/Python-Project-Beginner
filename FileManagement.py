@@ -1,4 +1,7 @@
+from distutils import extension
+from os import scandir, rename
 import os
+from os.path import splitext, exists, join
 import shutil
 import sys
 import time
@@ -13,10 +16,20 @@ dest_dir_images = "/Users/intern3.bpl/DownloadedImages" ## Need to implement Env
 source_dir_home ="/Users/Rocka/Downloads"
 dest_dir_images_home = "/Users/Rocka/DownloadedImages"
 
+def make_unique(path):
+    filename, extension = os.path.splitext(path)
+    counter = 1
+    while os.path.exists(path):
+        path =filename + "("+ str(counter)+")" +extension
+        counter +=1
+        
+    return path 
+
+
 def move(dest, entry,name):
     file_exists = os.path.exists(dest+"/"+name)
     if file_exists:
-        unique_name= makeUnique(name)
+        unique_name= make_unique(name)
         os.rename(entry,unique_name)
     shutil.move(entry,dest)
 
@@ -27,7 +40,7 @@ class MoverHandler(FileSystemEventHandler):
                 name  = entry.name
                 dest=source_dir
                 
-                if name.endswith('.jpg') or name.endswith('.jpeg') or name.endswith('.jpg'):
+                if name.endswith('.jpg') or name.endswith('.jpeg') or name.endswith('.jpg') or name.endswith('.bmp'):
                     dest = dest_dir_images
                     move(dest,entry,name)
 
