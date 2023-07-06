@@ -56,7 +56,7 @@ class MoverHandler(FileSystemEventHandler):
                 if (
                     name.endswith(".jpg")
                     or name.endswith(".jpeg")
-                    or name.endswith(".jpg")
+                    or name.endswith(".png")
                     or name.endswith(".bmp")
                 ):
                     dest = dest_dir_images
